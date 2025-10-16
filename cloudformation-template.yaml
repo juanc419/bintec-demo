@@ -4,7 +4,7 @@ Description: 'Bintec Demo - AWS Infrastructure'
 Parameters:
   DomainName:
     Type: String
-    Default: 'gmail.com'
+    Default: 'eafit.edu.co'
     Description: 'Domain name for SES email sending'
 
 Resources:
@@ -71,7 +71,7 @@ Resources:
       Role: !GetAtt LambdaExecutionRole.Arn
       Environment:
         Variables:
-          SES_FROM_EMAIL: 'juansebas1307@gmail.com'
+          SES_FROM_EMAIL: 'javenda5@eafit.edu.co'
       Code:
         ZipFile: |
           const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
@@ -82,7 +82,7 @@ Resources:
                   const { email, name, question, reportData, analysisResult } = JSON.parse(event.body);
                   
                   const verifiedEmails = [
-                      'juansebas1307@gmail.com'
+                      'javenda5@eafit.edu.co'
                   ];
                   
                   const isVerified = verifiedEmails.includes(email.toLowerCase());
@@ -151,7 +151,7 @@ Resources:
                               },
                               Subject: { Data: '[IA] Tu Analisis Completo - Grupo CIBest Bancolombia' }
                           },
-                          Source: "juan.tinjaca@blend360.com"
+                          Source: "javenda5@eafit.edu.co"
                       };
           
                       const command = new SendEmailCommand(emailParams);
